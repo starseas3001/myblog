@@ -13,9 +13,9 @@ from app import db, app, MY_EMAIL, BASE_DIR
 from . import utils
 from app.models import VerfiyCode, Admin
 
+
 # 检查登录状态
 def login_ctrl(f):
-
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if "admin" not in session:
@@ -34,7 +34,7 @@ def rename_file(filename):
     return filename
 
 
-# 自定定义过虑器:切片
+# 自定义过虑器:切片
 @app.template_filter('sliceup')
 def sliceup(value, args):
     """
@@ -46,12 +46,13 @@ def sliceup(value, args):
     return  value[:args]
 
 
-# 自定定义过虑器:时间格式化
+# 自定义过虑器:时间格式化
 @app.template_filter('date')
 def date(value):
     strtime = value.strftime('%Y-%m-%d')
 
     return strtime
+
 
 # 随机选取图片
 def get_image():
@@ -61,6 +62,7 @@ def get_image():
     image = image_list[random_num-1]
 
     return image
+
 
 # 随机产生六位数验证码
 def generate_code():
@@ -72,6 +74,7 @@ def generate_code():
         code += random_num
 
     return code
+
 
 # 发送邮箱验证码
 @utils.route('/sendCode/', methods=['GET', 'POST'])
