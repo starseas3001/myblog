@@ -177,7 +177,7 @@ def find_pwd():
 
     return render_template('admin/find_pwd.html')
 
-# 提交密码信息
+# 修改密码、提交
 @admin.route('/submitpwd/', methods=['GET', 'POST'])
 def submit_pwd():
     email = request.values['email']
