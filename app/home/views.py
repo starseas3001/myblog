@@ -61,7 +61,7 @@ def leave_msg():
     )
 
 
-# 添加评论
+# 添加评论/留言
 @home.route('/addcomment', methods=['GET', 'POST'])
 def add_comment():
     article_id = request.values.get('article_id','')
