@@ -1,0 +1,64 @@
+{#分页#}
+
+{% macro page(data,url) %}
+    {% if data %}
+        <div class="pagnation" id="pagnation">
+            {% if data.has_prev %}
+                <a href="{{ url_for(url) }}?page={{ data.prev_num }}" class="page-prev"></a>
+            {% endif %}
+            {% for p in data.iter_pages() %}
+                {% if p %}
+                    {% if p == data.page %}
+                        <a href="#" class="current">{{ p }}</a>
+                    {% else %}
+                        <a href="{{ url_for(url) }}?page={{ p }}">{{ p }}</a>
+                    {% endif %}
+                {% else %}
+                    <a href="#">&hellip;</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if data.has_next %}
+                <a href="{{ url_for(url) }}?page={{ data.next_num }}" class="page-next"></a>
+            {% endif %}
+        </div>
+
+    {% endif %}
+{% endmacro %}
+
+
+
+
+
+
+
+
+
+
+
+{#{% macro page(data,url) %}#}
+{#    {% if data %}#}
+{#        <div class="pagnation" id="pagnation">#}
+{#            {% if data.has_prev %}#}
+{#                <a href="{{ url_for(url) }}?page={{ data.prev_num }}"><<</a>#}
+{#            {% endif %}#}
+{#            {% for p in data.iter_pages() %}#}
+{#                {% if p %}#}
+{#                    {% if p == data.page %}#}
+{#                        <span aria-current='page' class='page-numbers current'>{{ p }}</span>#}
+{#                    {% else %}#}
+{#                        <a class='page-numbers' href="{{ url_for(url) }}?page={{ p }}">{{ p }}</a>#}
+{#                    {% endif %}#}
+{#                {% else %}#}
+{#                    <a href="#">&hellip;</a>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{##}
+{#            {% if data.has_next %}#}
+{#                <a href="{{ url_for(url) }}?page={{ data.next_num }}">>></a>#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#    {% endif %}#}
+{#{% endmacro %}#}
+

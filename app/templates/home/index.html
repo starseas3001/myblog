@@ -1,0 +1,115 @@
+{% extends "home/base.html" %}
+{% import 'utils_template/page.html' as home_page %}
+
+{% block title %}
+    主页 - Panson的博客
+{% endblock %}
+
+{% block content %}
+    <div id="main" class="content">
+        <div class="container">
+            <article itemscope="itemscope">
+                <div class="posts-list js-posts">
+
+                    {% for data in all_articles.items %}
+                        {% if loop.index%3 == 0 %}
+                            <div class="post post-layout-list js-gallery aos-init aos-animate" data-aos="fade-up">
+                            <div class="post-album">
+                                <div class="row content">
+                                    <div class="bg"
+                                         style="background-image: url({{ url_for('static', filename='uploads/'+data.image) }});"></div>
+                                    <div class="contentext flex-xs-middle">
+                                        <div class="album-title">
+                                            <a href="{{ url_for('home.detail') }}?article={{ data.id }}">{{ data.title }}</a>
+                                        </div>
+                                        <h5 class="review-item-creator"><b>发布日期：</b>{{ data.add_time }}</h5>
+                                        <div class="album-content">{{ data.summary }}
+                                             <div style="padding: 20px">
+                                                    <span class="total-comments-on-post pull-right">
+                                                        <a class="gaz-btn primary"
+                                                           href="{{ url_for('home.detail') }}?article={{ data.id }}">更 多</a>
+                                                    </span>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="album-thumb-width flex-xs-middle">
+
+                                    </div>
+                                </div>
+                            </div>
+                              </div>
+                        {% else %}
+                            {% if loop.index%2 == 0 %}
+                                <div class="post post-layout-list" data-aos="fade-up">
+                                    <div class="postnormal review ">
+                                        <div class="post-container review-item">
+                                            <div class="row review-item-wrapper">
+                                                <div class="col-sm-3">
+                                                    <a rel="nofollow" href="detail.html">
+                                                        <div class="review-item-img"
+                                                             style="background-image: url({{ url_for('static', filename='uploads/'+data.image) }});"></div>
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-9 flex-xs-middle">
+
+                                                    <div class="review-item-title" style="padding-top:20px;">
+                                                        <a href="{{ url_for('home.detail') }}?article={{ data.id }}"
+                                                           rel="bookmark">{{ data.title }}</a>
+                                                    </div>
+
+                                                    <div class="review-item-creator"><b>发布日期：</b>{{ data.add_time }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="review-bg-wrapper">
+                                                <div class="bg-blur"
+                                                     style="background-image: url({{ url_for('static', filename='uploads/'+data.image) }});"></div>
+                                            </div>
+                                        </div>
+                                        <div class="post-container">
+                                            <div class="entry-content">{{ data.summary }}...
+                                            </div>
+                                                <span class="total-comments-on-post pull-right">
+                                                    <a class="gaz-btn primary" href="{{ url_for('home.detail') }}?article={{ data.id }}">更 多</a>
+                                                </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+
+                                <div class="post post-layout-list" data-aos="fade-up">
+                                    <div class="status_list_item icon_kyubo">
+                                        <div class="status_user"
+                                             style="background-image: url({{ url_for('static', filename='uploads/'+data.image) }});">
+                                            <div class="status_section">
+                                                <a href="{{ url_for('home.detail') }}?article={{ data.id }}"
+                                                   class="status_btn">{{ data.title }}</a>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>{{ data.add_time }}</h5>
+                                                <p class="section_p">{{ data.summary }}... </p>
+                                                <div style="padding: 20px">
+                                                    <span class="total-comments-on-post pull-right">
+                                                        <a class="gaz-btn primary"
+                                                           href="{{ url_for('home.detail') }}?article={{ data.id }}">更 多</a>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        {% endif %}
+                    {% endfor %}
+
+                    </div>
+
+             <!-- -pagination  -->
+            {{ home_page.page(all_articles, 'home.index') }}
+            </article>
+        </div>
+    </div>
+{% endblock %}
