@@ -42,7 +42,7 @@ class Article(db.Model):
 
 
 class Comment(db.Model):
-    """留言评论"""
+    """文章评论"""
     __tablename__ = 'comment'
     id = db.Column(db.Integer, primary_key=True)
     nick_name = db.Column(db.String(30))
@@ -57,7 +57,7 @@ class Comment(db.Model):
 
 
 class GuestBook(db.Model):
-    """留言"""
+    """留言页留言"""
     ___tablename__ = 'guestbook'
     id = db.Column(db.Integer, primary_key=True)
     nick_name = db.Column(db.String(30))
